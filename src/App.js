@@ -1,25 +1,37 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+
 import './App.css';
+import RandomUser from './components/random-user';
 
 class App extends Component {
+
+  // set up state
+  constructor() {
+    super()
+
+    this.state = {
+      user: []
+    }
+  }
+
+  fetchDataFromApi() {
+    const url = 'https://randomuser.me/api/'
+    
+    // https://randomuser.me/api/
+
+    //write the AJAX
+    fetch(url)
+    .then(response => response.json())
+    .then(data => this.setState({ user: data.results }))
+    .catch(error => console.log(error))
+  }
+
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+       <button onClick={() => this.fetchDataFromApi() }>Get random user</button>
+       <RandomUser user={this.state.user} />
       </div>
     );
   }

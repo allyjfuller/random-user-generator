@@ -7,9 +7,13 @@ function RandomUser(props) {
 		<ul>
 			{props.user.map((user, index) => {
 				return(
-					
-					<p key={index}>{user.email}</p>
-					
+					<div>
+					<h1 key={user}>{user.name.first} {user.name.last}</h1>
+					<li>{user.phone}</li>
+					<li>{user.email}</li>
+					<li>{user.gender}</li>
+					<li>{user.location.city}</li>
+					</div>
 				)
 			
 			})}
